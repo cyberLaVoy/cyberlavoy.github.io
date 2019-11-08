@@ -173,3 +173,11 @@ button {
 #welcome>h2 {
     margin-bottom: 0px;
 }
+
+
+/* For Mobile */
+@media screen and (max-width: 540px) {
+    .std-container {
+        max-width: none;
+    }
+}
