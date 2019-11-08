@@ -41,7 +41,7 @@ function displayDetails(todo) {
 
 function displayTODOList(todos, item_created) {
 
-    todos.forEach(function (todo) {
+    todos["tasks"].forEach(function (todo) {
         var todo_item = document.createElement("div");
         var todo_title = document.createElement("div");
         var complete_button = document.createElement("div");
@@ -73,7 +73,7 @@ function displayTODOList(todos, item_created) {
         todo_item.appendChild(delete_button);
         todo_item.appendChild(clear);
 
-        if (todo["completion_status"] == "incomplete") {
+        if (todo["completion_status"] == "False") {
             incomplete_section.appendChild(todo_item);
         }
         else {
@@ -95,7 +95,7 @@ function displayTODOList(todos, item_created) {
         });
 
         complete_button.addEventListener("click", function() {
-            var query_string = createCompletionString(todo);
+            var query_string = "completion_status=True";
             replaceTODO(todo["rowid"], query_string);            
         });
 
@@ -168,21 +168,19 @@ function grabFormValues() {
         if (type != "radio") {
             var key = input_field.name;
             var value = input_field.value;
-            if (!value) {
-                value = " ";
+            if (value) {
+                var encoded_pair = key + "=" + encodeURIComponent(value);
+                encoded_body += encoded_pair + "&";
             }
-            var encoded_pair = key + "=" + encodeURIComponent(value);
-            encoded_body += encoded_pair + "&";
         }
         else {
             if (input_field.checked) {
                 var key = input_field.name;
                 var value = input_field.value;
-                if (!value) {
-                    value = " ";
+                if (value) {
+                    var encoded_pair = key + "=" + encodeURIComponent(value);
+                    encoded_body += (encoded_pair + "&");
                 }
-                var encoded_pair = key + "=" + encodeURIComponent(value);
-                encoded_body += (encoded_pair + "&");
             }
         }
     }
@@ -203,19 +201,6 @@ function clearFormValues() {
         }
     }
 }
-
-function createCompletionString(todo) {
-    var query_string = "";
-    for (key in todo) {
-        var query_value = todo[key];
-        if (key == "completion_status") {
-            query_value = "complete";
-        }
-        query_string += (key + '=' + query_value + '&');
-    }
-    return query_string.slice(0,-1);
-}
-
 
 // TODO Ajax requests
 
@@ -248,12 +233,7 @@ function retrieveTODO(ID) {
 }
 
 function createTODO(title) {
-    var currentDate = new Date();
-    var month = currentDate.getMonth() + 1;
-    var day = currentDate.getDate();
-    var year = currentDate.getFullYear();
-    var date_entered = year + '-' + month + '-' + day;
-    var default_todo = "short_description= " + title + "&long_description= &priority=1&desired_completion_date= &due_date= &completion_status=incomplete&date_entered=" + date_entered;
+    var default_todo = "short_description=" + title + "&completion_status=False";
 
     fetch(api_url+"todos", {
         method: 'POST',
