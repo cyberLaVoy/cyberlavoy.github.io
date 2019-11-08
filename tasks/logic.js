@@ -3,6 +3,8 @@ var api_url = "https://afternoon-brushlands-28790.herokuapp.com/";
 
 var opaque_background = document.querySelector("#opaque-background");
 
+var todo_interaction = document.querySelector("#todo-interaction");
+
 var todo_list = document.querySelector("#todolist");
 var incomplete_section = todo_list.querySelector("#incomplete");
 var complete_section = todo_list.querySelector("#complete");
@@ -65,6 +67,8 @@ function displayTODOList(todos, item_created) {
             save_container.innerHTML = "";
             save_container.appendChild(save_button);
             submission_form.style.display = "block";
+            opaque_background.style.display = "block";
+            todo_list.style.display = "none";
             displayDetails(todo);
         });
 
@@ -150,7 +154,9 @@ function displayTODOList(todos, item_created) {
         last_todo.click();
     }
     
+    submission_form.style.display = "none";
     todo_list.style.display = "block";
+    opaque_background.style.display = "none"
 }
 
 function displayAuth() {
@@ -344,14 +350,15 @@ function createAuth(userOrSession) {
                 opaque_background.style.display = "none";
                 log_form.style.display = "none";
                 account_created.innerHTML = "";
+                todo_interaction.style.display = "block";
                 listTODOs(false);
             }
             else if (userOrSession == "users") {
                 reg_display_btn.style.display = "none";
                 reg_form.style.display = "none";
                 log_form.style.display = "block";
-                account_created.innerHTML = "Account Created";
-                login_title.innerHTML = "Please, Login.";
+                account_created.innerHTML = "Account created";
+                login_title.innerHTML = "Please login";
             }
         }
         return response.json();

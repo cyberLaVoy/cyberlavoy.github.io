@@ -1,8 +1,12 @@
 body {
+    margin: 0px;
+}
+#container {
     background-image: url(images/cherry-blossom.png);
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 0px;
+    width: 100vw;
+    height: 100vh;
 }
 h2 {
     margin-top: 0px;
@@ -84,24 +88,21 @@ button {
 .clear {
 	clear: both;
 }
-.one-half {
-    width: calc(100%/2);
-    float: left;
-}
-#wrapper {
-    width: 90vw;
-    margin: 0px auto;
-    margin-top: 75px;
-}
-
-#todolist {
-    display: none;
-    width: 75%;
-    margin: 0px auto;
+.std-container {
+    max-width: 600px;
+    margin: 75px auto;
     background-color: #FBFAF6;
     box-shadow: 0px .5px 1px 1px #888;
-    padding: 10px;
+    padding: 15px;
 }
+.fix {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
 #complete {
     display: none;
 }
@@ -110,11 +111,6 @@ button {
 }
 
 #submission-form {
-    display: none;
-    width: 65%;
-    background-color: #FBFAF6;
-    box-shadow: 0px .5px 1px 1px #888;
-    padding: 10px;
     font-size: 1.1rem;
 }
 #save-button {
@@ -136,6 +132,7 @@ button {
     cursor: pointer;
     box-shadow: 0px .5px 1px 1px #888;
     background-color: #7ec0ee;
+    border-radius: 2px;
 }
 #title-input {
     float: left;
@@ -148,11 +145,6 @@ button {
 
 #opaque-background {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     background-color: #000;
     opacity: .75;
 }
@@ -164,39 +156,15 @@ button {
     cursor: pointer;
     color: #C02C2A;
 }
-
-#login-register {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-}
 #log-form>input {
     width: 95%;
     font-size: .9rem;
-}
-#log-form {
-    display: none;
-    background-color: #FBFAF6;
-    margin: 100px auto;
-    padding: 25px;
-    width: 250px;
-    height: auto;
 }
 #reg-form>input {
     width: 95%;
     font-size: .9rem;
 }
-#reg-form {
-    display: none;
-    background-color: #FBFAF6;
-    margin: 100px auto;
-    padding: 25px;
-    width: 250px;
-    height: auto;
-}
+
 #welcome {
     display: none;
     margin: 0px auto;
