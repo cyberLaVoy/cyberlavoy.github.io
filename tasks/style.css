@@ -144,7 +144,6 @@ button {
 }
 
 #opaque-background {
-    display: none;
     background-color: #000;
     opacity: .75;
 }
@@ -179,5 +178,6 @@ button {
 @media screen and (max-width: 540px) {
     .std-container {
         max-width: none;
+        width: 100vw;
     }
 }
