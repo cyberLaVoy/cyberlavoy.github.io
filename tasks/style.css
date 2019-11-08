@@ -139,11 +139,11 @@ button {
 }
 #title-input {
     float: left;
-    min-width: calc(100% - 55px);
+    width: calc(100% - 55px);
+    height: 23px;
     margin-left: 7px;
     font-size: 1.2rem;
     border: 1px solid #ccc;
-    box-sizing: border-box;
 }
 
 #opaque-background {
