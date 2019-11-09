@@ -1,0 +1,30 @@
+body {
+    margin: 0px;
+}
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: #263238;
+    padding: 5px;
+}
+a {
+    text-decoration: none;
+}
+.container > a span {
+    display: block;
+    background-color: #455A64;
+    border: 1px solid #607D8B;
+    color: white;
+    padding: 5vw;
+    font-size: 1.5rem;
+}
+.container > a span:hover{
+    background-color: #607D8B;
+    border: 1px solid #455A64;
+}
+
+@media screen and (max-width: 540px) {
+    .container {
+        flex-flow: column wrap;
+    }
+}
