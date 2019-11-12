@@ -1,5 +1,5 @@
 
-var api_url = "https://afternoon-brushlands-28790.herokuapp.com/";
+var api_url = "https://tasks-rest-api.herokuapp.com/";
 
 var opaque_background = document.querySelector("#opaque-background");
 
