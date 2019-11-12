@@ -22,9 +22,6 @@ button {
 .error {
     color: darkred;
 }
-.italic {
-    font-style: italic;
-}
 .todo-item {
     padding: 3px;
 }
@@ -84,7 +81,6 @@ button {
     cursor: pointer;
 }
 
-
 .clear {
 	clear: both;
 }
@@ -103,9 +99,6 @@ button {
     left: 0;
 }
 
-#complete {
-    display: none;
-}
 #completed-toggle:hover {
     cursor: pointer;
 }
@@ -164,19 +157,9 @@ button {
     font-size: .9rem;
 }
 
-#welcome {
-    display: none;
-    margin: 0px auto;
-    padding: 15px;
-}
-#welcome>h2 {
-    margin-bottom: 0px;
-}
-
-
 /* For Mobile */
 @media screen and (max-width: 540px) {
     .std-container {
-        max-width: 80vw;
+        max-width: 85vw;
     }
 }
