@@ -1,3 +1,6 @@
+var api_url = "https://api.jsonbin.io/b/5dcb023889c6ec4147889637"
+var secret_key = "$2b$10$/CieLe5LVOy6wHapnEfYiu33.OAAvNvEwEa/rrrRCIMG8GG9k1Csy"
+
 var total_switch = 0;
 var switch_win = 0;
 var switch_lose = 0;
@@ -5,9 +8,9 @@ var total_stay = 0;
 var stay_win = 0;
 var stay_lose = 0;
 
-session_outcome = {'switch' : false, 'switch_win' : false,
-                  'switch_lose' : false, 'stay' : false,
-                  'stay_win' : false, 'stay_lose' : false}
+session_outcome = {'switch' : "false", 'switch_win' : "false",
+                  'switch_lose' : "false", 'stay' : "false",
+                  'stay_win' : "false", 'stay_lose' : "false"}
 
 var stay_stats = document.querySelector('#stay-stats');
 var stay_win_stats = document.createElement('p');
@@ -119,7 +122,7 @@ function initializeGame() {
     announcements.innerHTML = '<h4><em><small>AWAITING YOUR CHOICE...</small></em></h4>';
     
     for (key in session_outcome) {
-        session_outcome[key] = false;
+        session_outcome[key] = "false";
     }
     
     end_game = false;
@@ -146,32 +149,34 @@ function insertPercentage (parent_element, top_value, bottom_value, status_strin
 }
 
 function updateGraph() {
-    fetch('http://localhost:8080/sessions').then(function(response) {
+    fetch(api_url, {"headers" : { "secret-key" : "$2b$10$/CieLe5LVOy6wHapnEfYiu33.OAAvNvEwEa/rrrRCIMG8GG9k1Csy" }
+    }).then(function(response) {
         return response.json();
     }).then(function(data) {
+        var entries = data["entries"];
         var total_switchS = 0;
         var switch_winS = 0;
         var switch_loseS = 0;
         var total_stayS = 0;
         var stay_winS = 0;
         var stay_loseS = 0;
-        for (var i = 0; i < data.length; i++) {
-            if (data[i]['stay'][0] == "true") {
+        for (var i = 0; i < entries.length; i++) {
+            if (entries[i]['stay'] == "true") {
                 total_stayS += 1;
             }
-            if (data[i]['switch'][0] == "true") {
+            if (entries[i]['switch'] == "true") {
                 total_switchS += 1;
             }
-            if (data[i]['stay_win'][0] == "true") {
+            if (entries[i]['stay_win'] == "true") {
                 stay_winS += 1;
             }
-            if (data[i]['switch_win'][0] == "true") {
+            if (entries[i]['switch_win'] == "true") {
                 switch_winS += 1;
             }
-            if (data[i]['stay_lose'][0] == "true") {
+            if (entries[i]['stay_lose'] == "true") {
                 stay_loseS += 1;
             }
-            if (data[i]['switch_lose'][0] == "true") {
+            if (entries[i]['switch_lose'] == "true") {
                 switch_loseS += 1;
             }
         }
@@ -182,35 +187,35 @@ function updateGraph() {
     });
 }
 updateGraph();
-    
+  
+function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    }
+    else {
+        var error = new Error(response.statusText);
+        error.response = response.clone();
+        throw error;
+    }
+}
 function postSession() {
-    function encodeObject(object_name) {
-        var encoded_string = '';
-        for (key in object_name) {
-            encoded_string += (key + '=' + object_name[key] + '&');
-        }
-        return encoded_string;
-    }
-    var encoded_string = encodeObject(session_outcome);
-    function checkStatus(response) {
-        if (response.status >= 200 && response.status < 300) {
-            return response;
-        }
-        else {
-            var error = new Error(response.statusText);
-            error.response = response.clone();
-            throw error;
-        }
-    }
-
-    fetch('http://localhost:8080/sessions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: encoded_string
-    }).then(checkStatus).catch(function(error) {
-        console.log(error);	
+    fetch(api_url, { headers: {"secret-key": secret_key} 
+    }).then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        data["entries"].push(session_outcome);
+        data = JSON.stringify(data);
+        fetch(api_url, { method: 'PUT',
+                         headers: { 'Content-Type': 'application/json',
+                                    'versioning' : 'false',
+                                    "secret-key" : secret_key
+                                   },
+                         body: data
+        }).then(checkStatus).catch(function(error) {
+            console.log(error);	
+        }).then(function() {
+            updateGraph();
+        });
     });
 }
 
@@ -235,14 +240,14 @@ var statusCheck = function(option, door_number) {
             if (initial_door_number == door_number) {
                 stay_win++;
                 total_stay++;
-                session_outcome['stay_win'] = true;
-                session_outcome['stay'] = true;
+                session_outcome['stay_win'] = "true";
+                session_outcome['stay'] = "true";
             }
             else {
                 switch_win++;
                 total_switch++;
-                session_outcome['switch_win'] = true;
-                session_outcome['switch'] = true;
+                session_outcome['switch_win'] = "true";
+                session_outcome['switch'] = "true";
             }
         }
         else {
@@ -251,14 +256,14 @@ var statusCheck = function(option, door_number) {
             if (initial_door_number == door_number) {
                 stay_lose++;
                 total_stay++;
-                session_outcome['stay_lose'] = true;
-                session_outcome['stay'] = true;
+                session_outcome['stay_lose'] = "true";
+                session_outcome['stay'] = "true";
             }
             else {
                 switch_lose++;
                 total_switch++;
-                session_outcome['switch_lose'] = true;
-                session_outcome['switch'] = true;
+                session_outcome['switch_lose'] = "true";
+                session_outcome['switch'] = "true";
             }
         }
         updateStats();
