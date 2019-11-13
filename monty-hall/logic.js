@@ -12,31 +12,19 @@ session_outcome = {'switch' : "false", 'switch_win' : "false",
                   'switch_lose' : "false", 'stay' : "false",
                   'stay_win' : "false", 'stay_lose' : "false"}
 
-var stay_stats = document.querySelector('#stay-stats');
-var stay_win_stats = document.createElement('p');
-stay_win_stats.innerHTML = "Win percentage: 0%";
-var stay_lose_stats = document.createElement('p');
-stay_lose_stats.innerHTML = "Lose percentage: 0%";
-stay_stats.appendChild(stay_win_stats);
-stay_stats.appendChild(stay_lose_stats);
-
-var switch_stats = document.querySelector('#switch-stats');
-var switch_win_stats = document.createElement('p');
-switch_win_stats.innerHTML = "Win percentage: 0%";
-var switch_lose_stats = document.createElement('p');
-switch_lose_stats.innerHTML = "Lose percentage: 0%";
-switch_stats.appendChild(switch_win_stats);
-switch_stats.appendChild(switch_lose_stats);
-
+var stay_win_percent = document.querySelector("#stay-win");
+var stay_lose_percent = document.querySelector("#stay-lose");
+var switch_win_percent = document.querySelector("#switch-win");
+var switch_lose_percent = document.querySelector("#switch-lose");
 
 var door1 = document.querySelector('#door1');
 var door2 = document.querySelector('#door2');
 var door3 = document.querySelector('#door3');
 var doors = [door1, door2, door3];
 
-var num1 = document.querySelector('#door1 h2');
-var num2 = document.querySelector('#door2 h2');
-var num3 = document.querySelector('#door3 h2');
+var num1 = document.querySelector('#door1 div');
+var num2 = document.querySelector('#door2 div');
+var num3 = document.querySelector('#door3 div');
 var nums = [num1, num2, num3];
 
 var option1 = document.querySelector('#option1');
@@ -50,16 +38,11 @@ var bar_switch_lose = document.querySelector('#bar-switch-lose');
 var bar_stay_lose = document.querySelector('#bar-stay-lose');
 
 
-var announcements = document.querySelector('#announcements');
-var reset_zone = document.querySelector('#reset-zone');
-
-var reset_button = document.createElement('button');
-reset_button.innerHTML = 'Reset Game';
-var win_message = document.createElement('h4');
-win_message.innerHTML = 'YOU WIN';
-var lose_message = document.createElement('h4');
-lose_message.innerHTML = 'YOU ARE DEAD';
-
+var reset_button = document.querySelector("#reset-button");
+var message = document.querySelector("#message");
+var win_message = "YOU WIN";
+var lose_message = "YOU LOSE";
+var initial_message = "CHOOSE A DOOR";
 
 
 var money_set;
@@ -68,6 +51,7 @@ var initial_click;
 var initial_door_number;
 var end_game;
 var result;
+
 function randomClass() {
     var random_number = Math.floor(Math.random()*2);
     if (random_number == 1) {
@@ -104,44 +88,11 @@ function fillDoors() {
     }
 }
 function updateStats() {
-    stay_win_stats.innerHTML = "Win percentage: " + (Math.round((stay_win/total_stay)*1000)/10).toString() + "%";
-    stay_lose_stats.innerHTML = "Lose percentage: " + (Math.round((stay_lose/total_stay)*1000)/10).toString() + "%";
-    switch_win_stats.innerHTML = "Win percentage: " + (Math.round((switch_win/total_switch)*1000)/10).toString() + "%";
-    switch_lose_stats.innerHTML = "Lose percentage: " + (Math.round((switch_lose/total_switch)*1000)/10).toString() + "%";
+    stay_win_percent.innerHTML = (Math.round((stay_win/total_stay)*1000)/10).toString();
+    stay_lose_percent.innerHTML = (Math.round((stay_lose/total_stay)*1000)/10).toString();
+    switch_win_percent.innerHTML = (Math.round((switch_win/total_switch)*1000)/10).toString();
+    switch_lose_percent.innerHTML = (Math.round((switch_lose/total_switch)*1000)/10).toString();
 }
-function initializeGame() {
-    if (end_game) {
-        reset_zone.removeChild(reset_button);
-        if (result == 'win') {
-            announcements.removeChild(win_message); 
-        }
-        else {
-            announcements.removeChild(lose_message); 
-        }
-    }
-    announcements.innerHTML = '<h4><em><small>AWAITING YOUR CHOICE...</small></em></h4>';
-    
-    for (key in session_outcome) {
-        session_outcome[key] = "false";
-    }
-    
-    end_game = false;
-    initial_click = true;
-    money_set = false;
-    num_aliens = 0;
-    
-    for (var i = 0; i < doors.length; i++) {
-        options[i].style.display = 'none';
-        options[i].className = '';
-        options[i].style.backgroundImage = '';
-        doors[i].style.display = 'block';
-        nums[i].style.color = 'black';
-    }
-
-    fillDoors();
-}
-initializeGame();
-
 function insertPercentage (parent_element, top_value, bottom_value, status_string) {
     parent_element.style.height = (100*(top_value/bottom_value)).toString() + '%';
     parent_element.innerHTML = "<p style='color:black; font-weight:bold;'>" + status_string + " percentage: " + (Math.round((top_value/bottom_value)*1000)/10).toString() + "%" + "</p>";
@@ -149,7 +100,7 @@ function insertPercentage (parent_element, top_value, bottom_value, status_strin
 }
 
 function updateGraph() {
-    fetch(api_url, {"headers" : { "secret-key" : "$2b$10$/CieLe5LVOy6wHapnEfYiu33.OAAvNvEwEa/rrrRCIMG8GG9k1Csy" }
+    fetch(api_url, {"headers" : { "secret-key" : secret_key }
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -186,7 +137,6 @@ function updateGraph() {
         insertPercentage(bar_switch_lose, switch_loseS, total_switchS, "Lose");
     });
 }
-updateGraph();
   
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -223,19 +173,18 @@ var reveal_alien = function(element1, element2, door_a, door_b) {
     var alien_found = false;
     if (element1.className == 'alien'){
         element1.style.display = 'block';
-        door_a.style.display = 'none';
+        door_a.classList.add("door-open");
         alien_found = true;
     }
     if (element2.className == 'alien' && !alien_found){
         element2.style.display = 'block';
-        door_b.style.display = 'none';
+        door_b.classList.add("door-open");
     }
 };
 var statusCheck = function(option, door_number) {
     if (!end_game) {
-        announcements.innerHTML = '';
         if (option.className == 'money') {
-            announcements.appendChild(win_message);
+            message.innerHTML = win_message;
             result = 'win';
             if (initial_door_number == door_number) {
                 stay_win++;
@@ -251,7 +200,7 @@ var statusCheck = function(option, door_number) {
             }
         }
         else {
-            announcements.appendChild(lose_message);
+            message.innerHTML = lose_message;
             result = 'lose';
             if (initial_door_number == door_number) {
                 stay_lose++;
@@ -269,17 +218,16 @@ var statusCheck = function(option, door_number) {
         updateStats();
         postSession();
         updateGraph();
-        reset_zone.appendChild(reset_button);
+        reset_button.style.display = "inline";
         end_game = true;
     }
 };
 
-
-/*event handlers*/
 reset_button.onclick = initializeGame;
+
 door1.onclick = function() {
     if (!initial_click) {
-        door1.style.display = 'none';
+        door1.classList.add("door-open");
         option1.style.display = 'block';
         statusCheck(option1, 1);
     }
@@ -292,7 +240,7 @@ door1.onclick = function() {
 };
 door2.onclick = function() {
     if (!initial_click) {
-        door2.style.display = 'none';
+        door2.classList.add("door-open");
         option2.style.display = 'block';
         statusCheck(option2, 2);
     }
@@ -305,7 +253,7 @@ door2.onclick = function() {
 };
 door3.onclick = function() {
     if (!initial_click) {
-        door3.style.display = 'none';
+        door3.classList.add("door-open");
         option3.style.display = 'block';
         statusCheck(option3, 3);
     }
@@ -316,3 +264,28 @@ door3.onclick = function() {
         initial_door_number = 3;
     }
 };
+
+function initializeGame() {
+    message.innerHTML = initial_message;
+    reset_button.style.display = "none";
+    
+    for (key in session_outcome) {
+        session_outcome[key] = "false";
+    }
+    
+    end_game = false;
+    initial_click = true;
+    money_set = false;
+    num_aliens = 0;
+    
+    for (var i = 0; i < doors.length; i++) {
+        options[i].style.display = 'none';
+        options[i].className = '';
+        options[i].style.backgroundImage = '';
+        doors[i].classList.remove("door-open");
+        nums[i].style.color = 'black';
+    }
+    fillDoors();
+}
+initializeGame();
+updateGraph();

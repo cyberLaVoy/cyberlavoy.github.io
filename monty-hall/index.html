@@ -7,22 +7,27 @@
         <link rel="icon" href="favicon.ico">
 	</head>
 	<body>
-        <div id='wrapper'>
-            
         <h1>Monty Hall Doors</h1>
         <div id='game-rules'>
-            <h3>How to Play:</h3>
-            <p>There are two doors with aliens and one door with money.</p>
-            <p>Step 1: Click a door to choose (a door with an alien will be revealed).</p>
-            <p>Step 2: Stay on original door or switch to other door (click to make choice).</p>
+            <p>
+                <strong>How to Play:</strong></br>
+                There are two doors with aliens and one door with money.</br>
+                Step 1: Click a door to choose (a door with a black hole will be revealed).</br>
+                Step 2: Stay on original door or switch to other door (click to make choice).
+            </p>
         </div>
         
         <div id='game-area'>
-            <div id='announcements'></div>
+
+            <div id='announcements'>
+                <span id="message">CHOOSE A DOOR</span>
+                <button id="reset-button" style="display: none;">Reset Game</button>
+            </div>
+
             <div class='one-third'>
                 <div id='door-area1' class='door-area'>
                     <div class='door' id='door1'>
-                        <h2>1</h2>
+                        <div class="door-number">1</div>
                     </div>
                     <div id='option1'></div>
 
@@ -31,7 +36,7 @@
             <div class='one-third'>
                 <div id='door-area2' class='door-area'>
                     <div class='door' id='door2'>
-                        <h2>2</h2>
+                        <div class="door-number">2</div>
                     </div>
                     <div id='option2'></div>
 
@@ -40,7 +45,7 @@
             <div class='one-third'>
                 <div id='door-area3' class='door-area'>
                     <div class='door' id='door3'>
-                        <h2>3</h2>
+                        <div class="door-number">3</div>
                     </div>
                     <div id='option3'></div>
 
@@ -53,12 +58,16 @@
         <div id='statistics'>
             <div id='current-stats' class='one-half'>
                 <h3>Current Game Stats:</h3>
-                <div id='switch-stats' class='one-half'>
-                    <h3><em>Switched</em></h3>
-
+                <div class='one-half'>
+                    <div><em>Switched</em></div>
+                    <div>Win percentage: <span id="switch-win">0</span> % </div>
+                    <div>Lose percentage: <span id="switch-lose">0</span> % </div> 
                 </div>
-                <div id='stay-stats' class='one-half'>
-                    <h3><em>Stayed</em></h3>
+
+                <div class='one-half'>
+                    <div><em>Stayed</em> </div>
+                    <div>Win percentage: <span id="stay-win">0</span> % </div>
+                    <div>Lose percentage: <span id="stay-lose">0</span> % </div>
                 </div>
                 <div class='clear'></div>
             </div>
@@ -67,13 +76,13 @@
                 <h3>Global Game Stats:</h3>
                 <div id='graph'>
                     <div class='one-half' id='switched-bars'>
-                        <h3><em>Switched</em></h3>
+                        <dvi><em>Switched</em></dvi>
                         <div id='bar-switch-win' class='one-half'></div>
                         <div id='bar-switch-lose' class='one-half'></div>
                         <div class='clear'></div>
                     </div>
                     <div class='one-half' id='stayed-bars'>
-                        <h3><em>Stayed</em></h3>
+                        <div><em>Stayed</em></div>
                         <div id='bar-stay-win' class='one-half'></div>
                         <div id='bar-stay-lose' class='one-half'></div>
                         <div class='clear'></div>
@@ -81,10 +90,10 @@
                     <div class='clear'></div>
                 </div>
             </div>
+
             <div class='clear'></div>
         </div>    
             
-        </div>
         <script src='logic.js'></script>
 	</body>
 </html>
