@@ -9,12 +9,10 @@
 	<body>
         <h1>Monty Hall Doors</h1>
         <div id='game-rules'>
-            <p>
-                <strong>How to Play:</strong></br>
-                There are two doors with aliens and one door with money.</br>
-                Step 1: Click a door to choose (a door with a black hole will be revealed).</br>
-                Step 2: Stay on original door or switch to other door (click to make choice).
-            </p>
+            <h2>How to Play:</h2>
+            <div>There are two doors with black holes and one door with money.</div>
+            <div>Step 1: Click on a door to choose. A door with a black hole will be revealed.</div>
+            <div>Step 2: Click on original door or switch to other door.</div>
         </div>
         
         <div id='game-area'>
@@ -57,15 +55,15 @@
             
         <div id='statistics'>
             <div id='current-stats' class='one-half'>
-                <h3>Current Game Stats:</h3>
+                <h2>Current Game Stats:</h2>
                 <div class='one-half'>
-                    <div><em>Switched</em></div>
+                    <h3><em>Switched</em></h3>
                     <div>Win percentage: <span id="switch-win">0</span> % </div>
                     <div>Lose percentage: <span id="switch-lose">0</span> % </div> 
                 </div>
 
                 <div class='one-half'>
-                    <div><em>Stayed</em> </div>
+                    <h3><em>Stayed</em> </h3>
                     <div>Win percentage: <span id="stay-win">0</span> % </div>
                     <div>Lose percentage: <span id="stay-lose">0</span> % </div>
                 </div>
@@ -73,16 +71,16 @@
             </div>
             
             <div id='global-stats' class='one-half'>
-                <h3>Global Game Stats:</h3>
+                <h2>Global Game Stats:</h2>
                 <div id='graph'>
                     <div class='one-half' id='switched-bars'>
-                        <dvi><em>Switched</em></dvi>
+                        <h3><em>Switched</em></h3>
                         <div id='bar-switch-win' class='one-half'></div>
                         <div id='bar-switch-lose' class='one-half'></div>
                         <div class='clear'></div>
                     </div>
                     <div class='one-half' id='stayed-bars'>
-                        <div><em>Stayed</em></div>
+                        <h3><em>Stayed</em></h3>
                         <div id='bar-stay-win' class='one-half'></div>
                         <div id='bar-stay-lose' class='one-half'></div>
                         <div class='clear'></div>

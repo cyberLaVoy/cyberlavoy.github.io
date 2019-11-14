@@ -95,7 +95,7 @@ function updateStats() {
 }
 function insertPercentage (parent_element, top_value, bottom_value, status_string) {
     parent_element.style.height = (100*(top_value/bottom_value)).toString() + '%';
-    parent_element.innerHTML = "<p style='color:black; font-weight:bold;'>" + status_string + " percentage: " + (Math.round((top_value/bottom_value)*1000)/10).toString() + "%" + "</p>";
+    parent_element.innerHTML = "<p style='color:black;'>" + status_string + " percentage: " + (Math.round((top_value/bottom_value)*1000)/10).toString() + "%" + "</p>";
 
 }
 
@@ -281,7 +281,6 @@ function initializeGame() {
     for (var i = 0; i < doors.length; i++) {
         options[i].style.display = 'none';
         options[i].className = '';
-        options[i].style.backgroundImage = '';
         doors[i].classList.remove("door-open");
         nums[i].style.color = 'black';
     }

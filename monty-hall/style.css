@@ -8,15 +8,6 @@ button {
     background-color: black;
 }
 
-.door-number {
-    font-family: sans-serif;
-    font-size: 7rem;
-    margin: 0px;
-    text-shadow: -.5px 0 grey, 0 .5px grey, .5px 0 grey, 0 -.5px grey;
-    color: black;
-    text-align: center;
-}
-
 .clear {
 	clear: both;
 }
@@ -28,18 +19,12 @@ button {
     width: calc(100%/2);
     float: left;
 }
-.one-fourth {
-    width: calc(100%/4);
-    float: left;
-}
 
-.door {
-    background-image: url('images/door.png');
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    transform-origin: left;
-    transition: all 0.5s ease-in-out;
+.door-number {
+    font-size: 7rem;
+    text-shadow: -.5px 0 grey, 0 .5px grey, .5px 0 grey, 0 -.5px grey;
+    color: black;
+    text-align: center;
 }
 .door-open
 {
@@ -53,6 +38,15 @@ button {
     background-repeat: no-repeat;
     height: inherit;
     width: inherit;
+}
+.door {
+    background-image: url('images/door.png');
+    width: 101%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    transform-origin: left;
+    transition: all 0.5s ease-in-out;
 }
 .money {
     background-image: url("images/money.jpg");
@@ -71,21 +65,14 @@ button {
     position:relative;
     background-color: black;
 }
-.door-area img {
-    height: inherit;
-}
-
-#statistics {
-    margin-bottom: 25px;
-}
 #game-area {
-    background-image: url('https://cdn.pixabay.com/photo/2014/12/28/13/00/curtain-581826_960_720.jpg');
+    background-image: url("images/curtain.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     margin: 15px auto;
     border: 6px solid #88090B;
-    padding: 15px;
+    padding: 25px 0px;
 }
 #game-rules {
     margin-bottom: 25px;
@@ -103,7 +90,8 @@ button {
 
 #announcements {
     font-size: 2rem;
-    margin: 25px auto;
+    margin: 0 auto;
+    margin-bottom: 25px;
     text-align: center;
 }
 
