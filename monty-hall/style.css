@@ -1,11 +1,13 @@
 body {
-   background-color: black;
-   color: white;
+   background-color: #33266E;
+   margin: 0px;
 }
-
 button {
-    color: white;
-    background-color: black;
+    background-color: #806543;
+    border-color: #806543;
+    font-size: 1.2rem;
+    color:black;
+    margin-top: 15px;
 }
 
 .clear {
@@ -22,7 +24,6 @@ button {
 
 .door-number {
     font-size: 7rem;
-    text-shadow: -.5px 0 grey, 0 .5px grey, .5px 0 grey, 0 -.5px grey;
     color: black;
     text-align: center;
 }
@@ -54,6 +55,19 @@ button {
 .alien {
     background-image: url("images/black-hole.jpg");
 }
+.container {
+    background-color: #111111;
+    border-bottom: 25px solid #33266E;
+    padding: 15px 0px;
+    color: white;
+}
+.banner {
+    background-color: #806543;
+    color: black;
+    margin-bottom: 15px;
+    font-size: 2rem;
+    padding-left: 5px;
+}
 
 .door-area {
     height: 300px;
@@ -65,18 +79,9 @@ button {
     position:relative;
     background-color: black;
 }
-#game-area {
-    background-image: url("images/curtain.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin: 15px auto;
-    border: 6px solid #88090B;
-    padding: 25px 0px;
-}
+
 #game-rules {
-    margin-bottom: 25px;
-    margin-top: 25px;
+    padding: 0px 15px;
 }
 #door-area1 {
 	float: right;
@@ -88,44 +93,23 @@ button {
 	float: left;
 }
 
-#announcements {
-    font-size: 2rem;
-    margin: 0 auto;
-    margin-bottom: 25px;
-    text-align: center;
+.graph {
+    height: 250px;
+    padding: 0px 5px;
 }
-
-#graph {
-    width: 100%;
-    height: 200px;
-}
-#stayed-bars {
+.graph > div {
     height: 100%;
     position: relative;
 }
-#switched-bars {
-    height: 100%;
-    position: relative;
-}
-#bar-switch-win {
-    background-color: #FFF11B;
+.graph > div div {
+    color:black;
     position: absolute;
     bottom: 0;
 }
-#bar-switch-lose {
-    background-color: #88090B;
-    position: absolute;
-    bottom: 0;
-    left: calc(100%/2);
+.bar-win {
+    background-color: #A6607C;
 }
-#bar-stay-win {
-    background-color: #FFF11B;
-    position: absolute;
-    bottom: 0;
-}
-#bar-stay-lose {
-    background-color: #88090B;
-    position: absolute;
-    bottom: 0;
+.bar-lose {
+    background-color: #542F34;
     left: calc(100%/2);
 }

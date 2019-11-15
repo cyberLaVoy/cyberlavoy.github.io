@@ -1,5 +1,6 @@
-var api_url = "https://api.jsonbin.io/b/5dcb023889c6ec4147889637"
-var secret_key = "$2b$10$/CieLe5LVOy6wHapnEfYiu33.OAAvNvEwEa/rrrRCIMG8GG9k1Csy"
+var api_url = "https://api.jsonbin.io/b/5dcb023889c6ec4147889637";
+var secret_key = "$2b$10$/CieLe5LVOy6wHapnEfYiu33.OAAvNvEwEa/rrrRCIMG8GG9k1Csy";
+var initial_click_color = "#A66077";
 
 var total_switch = 0;
 var switch_win = 0;
@@ -40,9 +41,9 @@ var bar_stay_lose = document.querySelector('#bar-stay-lose');
 
 var reset_button = document.querySelector("#reset-button");
 var message = document.querySelector("#message");
-var win_message = "YOU WIN";
-var lose_message = "YOU LOSE";
-var initial_message = "CHOOSE A DOOR";
+var win_message = "You win!";
+var lose_message = "You lose.";
+var initial_message = "Choose a door...";
 
 
 var money_set;
@@ -95,7 +96,7 @@ function updateStats() {
 }
 function insertPercentage (parent_element, top_value, bottom_value, status_string) {
     parent_element.style.height = (100*(top_value/bottom_value)).toString() + '%';
-    parent_element.innerHTML = "<p style='color:black;'>" + status_string + " percentage: " + (Math.round((top_value/bottom_value)*1000)/10).toString() + "%" + "</p>";
+    parent_element.innerHTML = status_string + " percent: " + (Math.round((top_value/bottom_value)*1000)/10).toString() + "%";
 
 }
 
@@ -232,7 +233,7 @@ door1.onclick = function() {
         statusCheck(option1, 1);
     }
     if (initial_click) {
-        num1.style.color = '#88090B';
+        num1.style.color = initial_click_color;
         reveal_alien(option2, option3, door2, door3);
         initial_click = false;
         initial_door_number = 1;
@@ -245,7 +246,7 @@ door2.onclick = function() {
         statusCheck(option2, 2);
     }
     if (initial_click) {
-        num2.style.color = '#88090B';
+        num2.style.color = initial_click_color;
         reveal_alien(option1, option3, door1, door3);
         initial_click = false;
         initial_door_number = 2;
@@ -258,7 +259,7 @@ door3.onclick = function() {
         statusCheck(option3, 3);
     }
     if (initial_click) {
-        num3.style.color = '#88090B';
+        num3.style.color = initial_click_color;
         reveal_alien(option1, option2, door1, door2);
         initial_click = false;
         initial_door_number = 3;
