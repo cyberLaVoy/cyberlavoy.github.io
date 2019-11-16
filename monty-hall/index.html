@@ -9,12 +9,13 @@
 	<body>
         <div class="container">
             <div class="banner">Monty Hall</div>
-            <div id='game-rules'>
+            <div id='game-rules' class="one-half">
                 <h2>How to Play:</h2>
                 <div><em>There are two doors with black holes and one door with money.</em></div>
                 <div>Step 1: Click on a door to choose. A door with a black hole will be revealed.</div>
                 <div>Step 2: Click on original door or switch to other door.</div>
             </div>
+            <div class="clear"></div>
         </div>
         
         <div class="container">
@@ -53,18 +54,22 @@
             
         <div class="container">
             <div class="banner">Game Stats</div>
+
             <div id='current-stats' class='one-half'>
                 <h2>Current:</h2>
-                <div class='one-half'>
-                    <h3><em>Switched</em></h3>
-                    <div>Win percent: <span id="switch-win">0</span> % </div>
-                    <div>Lose percent: <span id="switch-lose">0</span> % </div> 
-                </div>
-
-                <div class='one-half'>
-                    <h3><em>Stayed</em> </h3>
-                    <div>Win percent: <span id="stay-win">0</span> % </div>
-                    <div>Lose percent: <span id="stay-lose">0</span> % </div>
+                <div class='graph'>
+                    <div class='one-half'>
+                        <h3><em>Switched</em></h3>
+                        <div id='current-bar-switch-win' class='one-half bar-win'></div>
+                        <div id='current-bar-switch-lose' class='one-half bar-lose'></div>
+                        <div class='clear'></div>
+                    </div>
+                    <div class='one-half'>
+                        <h3><em>Stayed</em></h3>
+                        <div id='current-bar-stay-win' class='one-half bar-win'></div>
+                        <div id='current-bar-stay-lose' class='one-half bar-lose'></div>
+                        <div class='clear'></div>
+                    </div>
                 </div>
                 <div class='clear'></div>
             </div>
