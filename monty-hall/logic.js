@@ -2,10 +2,8 @@ var api_url = "https://api.jsonbin.io/b/5dcf457bad0335638b1187f2";
 var secret_key = "$2b$10$/CieLe5LVOy6wHapnEfYiu33.OAAvNvEwEa/rrrRCIMG8GG9k1Csy";
 var initial_click_color = "#A66077";
 
-var total_switch = 0;
 var switch_win = 0;
 var switch_lose = 0;
-var total_stay = 0;
 var stay_win = 0;
 var stay_lose = 0;
 
@@ -29,7 +27,6 @@ var message = document.querySelector("#message");
 var win_message = "You win!";
 var lose_message = "You lose.";
 var initial_message = "Choose a door...";
-
 
 var money_set;
 var num_aliens;
@@ -74,19 +71,23 @@ function fillDoors() {
     }
 }
 function insertPercentage (parent_element, top_value, bottom_value, status_string) {
-    parent_element.style.height = (80*(top_value/bottom_value)).toString() + '%';
-    parent_element.innerHTML = status_string + " percent: " + (Math.round((top_value/bottom_value)*1000)/10).toString() + "%";
+    if (bottom_value == 0 || isNaN(bottom_value)) {
+        var fraction = 0;
+    }
+    else {
+        var fraction = top_value/bottom_value; 
+    }
+    if ( fraction != 0 ) {
+        parent_element.style.height = (80*(fraction)).toString() + '%';
+    }
+    parent_element.innerHTML = status_string + " percent: " + (Math.round(fraction*100)).toString() + "%";
 
 }
 function updateStats() {
-    var bar_switch_win = document.querySelector('#current-bar-switch-win');
-    var bar_stay_win = document.querySelector('#current-bar-stay-win');
-    var bar_switch_lose = document.querySelector('#current-bar-switch-lose');
-    var bar_stay_lose = document.querySelector('#current-bar-stay-lose');
-    insertPercentage(bar_stay_win, stay_win, total_stay, "Win");
-    insertPercentage(bar_stay_lose, stay_lose, total_stay, "Lose");
-    insertPercentage(bar_switch_win, switch_win, total_switch, "Win");
-    insertPercentage(bar_switch_lose, switch_lose, total_switch, "Lose");
+    insertPercentage(document.querySelector('#current-bar-stay-win'), stay_win, stay_win+stay_lose, "Win");
+    insertPercentage(document.querySelector('#current-bar-stay-lose'), stay_lose, stay_win+stay_lose, "Lose");
+    insertPercentage(document.querySelector('#current-bar-switch-win'), switch_win, switch_win+switch_lose, "Win");
+    insertPercentage(document.querySelector('#current-bar-switch-lose'), switch_lose, switch_win+switch_lose, "Lose");
 }
 
 
@@ -95,20 +96,16 @@ function updateGraph() {
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
-        var bar_switch_win = document.querySelector('#bar-switch-win');
-        var bar_stay_win = document.querySelector('#bar-stay-win');
-        var bar_switch_lose = document.querySelector('#bar-switch-lose');
-        var bar_stay_lose = document.querySelector('#bar-stay-lose');
         var g_switch_win_count = data["switch_win_count"];
         var g_switch_lose_count = data["switch_lose_count"];
         var g_stay_win_count = data["stay_win_count"];
         var g_stay_lose_count = data["stay_lose_count"];
         var g_total_switch = g_switch_win_count + g_switch_lose_count;
         var g_total_stay = g_stay_win_count + g_stay_lose_count;
-        insertPercentage(bar_stay_win, g_stay_win_count, g_total_stay, "Win");
-        insertPercentage(bar_stay_lose, g_stay_lose_count, g_total_stay, "Lose");
-        insertPercentage(bar_switch_win, g_switch_win_count, g_total_switch, "Win");
-        insertPercentage(bar_switch_lose, g_switch_lose_count, g_total_switch, "Lose");
+        insertPercentage(document.querySelector('#bar-stay-win'), g_stay_win_count, g_total_stay, "Win");
+        insertPercentage(document.querySelector('#bar-stay-lose'), g_stay_lose_count, g_total_stay, "Lose");
+        insertPercentage(document.querySelector('#bar-switch-win'), g_switch_win_count, g_total_switch, "Win");
+        insertPercentage(document.querySelector('#bar-switch-lose'), g_switch_lose_count, g_total_switch, "Lose");
     });
 }
   
@@ -161,12 +158,10 @@ var statusCheck = function(option, door_number) {
             result = 'win';
             if (initial_door_number == door_number) {
                 stay_win++;
-                total_stay++;
                 postSession("stay_win_count");
             }
             else {
                 switch_win++;
-                total_switch++;
                 postSession("switch_win_count");
             }
         }
@@ -175,12 +170,10 @@ var statusCheck = function(option, door_number) {
             result = 'lose';
             if (initial_door_number == door_number) {
                 stay_lose++;
-                total_stay++;
                 postSession("stay_lose_count");
             }
             else {
                 switch_lose++;
-                total_switch++;
                 postSession("switch_lose_count");
             }
         }
@@ -234,6 +227,8 @@ door3.onclick = function() {
 };
 
 function initializeGame() {
+    updateGraph();
+    updateStats();
     message.innerHTML = initial_message;
     reset_button.style.display = "none";
    
@@ -251,4 +246,3 @@ function initializeGame() {
     fillDoors();
 }
 initializeGame();
-updateGraph();
