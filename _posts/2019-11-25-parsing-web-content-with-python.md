@@ -74,7 +74,7 @@ for story in stories:
         fout.write(divs[0].get_text())
 ```
 
-Now you can enjoy all the cosmic horror H.P. Lovecraft has to offer!
+Now you can enjoy all the cosmic horror H.P. Lovecraft has to offer! :octopus:
 
 ### Python Libraries Documentation
 
