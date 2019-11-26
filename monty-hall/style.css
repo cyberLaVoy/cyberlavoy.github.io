@@ -1,15 +1,10 @@
-body {
-   background-color: #33266E;
-   margin: 0px;
-}
 button {
     background-color: #806543;
     border-color: #806543;
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     color:black;
-    margin-top: 15px;
+    margin: 15px 0px;
 }
-
 .clear {
 	clear: both;
 }
@@ -23,15 +18,15 @@ button {
 }
 
 .door-number {
-    font-size: 7rem;
+    font-size: 6rem;
     color: black;
     text-align: center;
 }
 .door-open
 {
-    transform: perspective(1200px)
+    transform:
     translateZ(0px) translateX(0px)
-    translateY(0px) rotateY(-80deg);
+    translateY(0px) rotateY(-90deg);
 }
 .money, .alien, .door {
     background-position: center;
@@ -47,7 +42,7 @@ button {
     top: 0px;
     left: 0px;
     transform-origin: left;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .money {
     background-image: url("images/money.jpg");
@@ -57,21 +52,21 @@ button {
 }
 .container {
     background-color: #111111;
-    border-bottom: 25px solid #33266E;
-    padding: 15px 0px;
+    padding-top: 15px;
     color: white;
 }
 .banner {
     background-color: #806543;
     color: black;
     margin-bottom: 15px;
-    font-size: 2rem;
+    font-size: 1.7rem;
     padding-left: 5px;
 }
 
 .door-area {
     height: 300px;
-	width: 200px;
+    max-width: 200px;
+    width: -webkit-fill-available;
     border-top: 6px solid #584539;
     border-right: 6px solid #62524B;
     border-left: 6px solid #3C2E25;
@@ -80,9 +75,6 @@ button {
     background-color: black;
 }
 
-#game-rules {
-    padding: 0px 15px;
-}
 #door-area1 {
 	float: right;
 }
@@ -95,11 +87,13 @@ button {
 
 .graph {
     height: 250px;
-    padding: 0px 5px;
 }
 .graph > div {
+    border: .5px solid white;
+    width: calc(100%/2 - 3px);
     height: 100%;
     position: relative;
+    margin: 1px;
 }
 .graph > div div {
     color:black;
@@ -109,8 +103,10 @@ button {
 }
 .bar-win {
     background-color: #A6607C;
+    left: 1px;
 }
 .bar-lose {
     background-color: #542F34;
-    left: calc(100%/2);
+    left: calc(100%/2 + 1px);
+    width: calc(100%/2 - 2px)
 }

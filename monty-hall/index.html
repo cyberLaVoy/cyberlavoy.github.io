@@ -1,101 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Monty Hall</title>
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="style.css">
-        <link rel="icon" href="favicon.ico">
-	</head>
-	<body>
-        <div class="container">
-            <div class="banner">Monty Hall</div>
-            <div id='game-rules' class="one-half">
-                <h2>How to Play:</h2>
-                <div><em>There are two doors with black holes and one door with money.</em></div>
-                <div>Step 1: Click on a door to choose. A door with a black hole will be revealed.</div>
-                <div>Step 2: Click on original door or switch to other door.</div>
+---
+layout: default
+---
+
+<link rel="stylesheet" href="style.css">
+
+<h1>Monty Hall</h1>
+
+<div id="game-container">
+    <div class="container" style="background-image:url('images/curtain.jpg')">
+        <div class="banner" id="message"></div>
+        <div class='one-third'>
+            <div id='door-area1' class='door-area'>
+                <div class='door' id='door1'>
+                    <div class="door-number">1</div>
+                </div>
+                <div id='option1'></div>
+
             </div>
-            <div class="clear"></div>
+        </div>
+        <div class='one-third'>
+            <div id='door-area2' class='door-area'>
+                <div class='door' id='door2'>
+                    <div class="door-number">2</div>
+                </div>
+                <div id='option2'></div>
+
+            </div>
+        </div>
+        <div class='one-third'>
+            <div id='door-area3' class='door-area'>
+                <div class='door' id='door3'>
+                    <div class="door-number">3</div>
+                </div>
+                <div id='option3'></div>
+
+            </div>
+        </div>
+        <div class='clear'></div>
+        <button id="reset-button">Reset Game</button>
+    </div>
+        
+    <div class="container">
+        <div class="banner">Game Stats</div>
+
+        <div id='current-stats' class='one-half'>
+            <h2>Current</h2>
+            <div class='graph'>
+                <div class='one-half'>
+                    <h3><em>Switched</em></h3>
+                    <div id='current-bar-switch-win' class='one-half bar-win'></div>
+                    <div id='current-bar-switch-lose' class='one-half bar-lose'></div>
+                    <div class='clear'></div>
+                </div>
+                <div class='one-half'>
+                    <h3><em>Stayed</em></h3>
+                    <div id='current-bar-stay-win' class='one-half bar-win'></div>
+                    <div id='current-bar-stay-lose' class='one-half bar-lose'></div>
+                    <div class='clear'></div>
+                </div>
+            </div>
+            <div class='clear'></div>
         </div>
         
-        <div class="container">
-            <div class="banner" id="message"></div>
-
-            <div class='one-third'>
-                <div id='door-area1' class='door-area'>
-                    <div class='door' id='door1'>
-                        <div class="door-number">1</div>
-                    </div>
-                    <div id='option1'></div>
-
+        <div id='global-stats' class='one-half'>
+            <h2>Global</h2>
+            <div class='graph'>
+                <div class='one-half'>
+                    <h3><em>Switched</em></h3>
+                    <div id='bar-switch-win' class='one-half bar-win'></div>
+                    <div id='bar-switch-lose' class='one-half bar-lose'></div>
+                    <div class='clear'></div>
                 </div>
-            </div>
-            <div class='one-third'>
-                <div id='door-area2' class='door-area'>
-                    <div class='door' id='door2'>
-                        <div class="door-number">2</div>
-                    </div>
-                    <div id='option2'></div>
-
-                </div>
-            </div>
-            <div class='one-third'>
-                <div id='door-area3' class='door-area'>
-                    <div class='door' id='door3'>
-                        <div class="door-number">3</div>
-                    </div>
-                    <div id='option3'></div>
-
+                <div class='one-half'>
+                    <h3><em>Stayed</em></h3>
+                    <div id='bar-stay-win' class='one-half bar-win'></div>
+                    <div id='bar-stay-lose' class='one-half bar-lose'></div>
+                    <div class='clear'></div>
                 </div>
             </div>
             <div class='clear'></div>
-            <button id="reset-button" style="display: none;">Reset Game</button>
         </div>
-            
-        <div class="container">
-            <div class="banner">Game Stats</div>
 
-            <div id='current-stats' class='one-half'>
-                <h2>Current:</h2>
-                <div class='graph'>
-                    <div class='one-half'>
-                        <h3><em>Switched</em></h3>
-                        <div id='current-bar-switch-win' class='one-half bar-win'></div>
-                        <div id='current-bar-switch-lose' class='one-half bar-lose'></div>
-                        <div class='clear'></div>
-                    </div>
-                    <div class='one-half'>
-                        <h3><em>Stayed</em></h3>
-                        <div id='current-bar-stay-win' class='one-half bar-win'></div>
-                        <div id='current-bar-stay-lose' class='one-half bar-lose'></div>
-                        <div class='clear'></div>
-                    </div>
-                </div>
-                <div class='clear'></div>
-            </div>
-            
-            <div id='global-stats' class='one-half'>
-                <h2>Global:</h2>
-                <div class='graph'>
-                    <div class='one-half'>
-                        <h3><em>Switched</em></h3>
-                        <div id='bar-switch-win' class='one-half bar-win'></div>
-                        <div id='bar-switch-lose' class='one-half bar-lose'></div>
-                        <div class='clear'></div>
-                    </div>
-                    <div class='one-half'>
-                        <h3><em>Stayed</em></h3>
-                        <div id='bar-stay-win' class='one-half bar-win'></div>
-                        <div id='bar-stay-lose' class='one-half bar-lose'></div>
-                        <div class='clear'></div>
-                    </div>
-                </div>
-                <div class='clear'></div>
-            </div>
-
-            <div class='clear'></div>
-        </div>    
-            
-        <script src='logic.js'></script>
-	</body>
-</html>
+        <div class='clear'></div>
+    </div>    
+    <script src='logic.js'></script>
+</div>

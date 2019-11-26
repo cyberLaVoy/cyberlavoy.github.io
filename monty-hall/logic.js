@@ -22,7 +22,6 @@ var option2 = document.querySelector('#option2');
 var option3 = document.querySelector('#option3');
 var options =[option1, option2, option3];
 
-var reset_button = document.querySelector("#reset-button");
 var message = document.querySelector("#message");
 var win_message = "You win!";
 var lose_message = "You lose.";
@@ -80,7 +79,7 @@ function insertPercentage (parent_element, top_value, bottom_value, status_strin
     if ( fraction != 0 ) {
         parent_element.style.height = (80*(fraction)).toString() + '%';
     }
-    parent_element.innerHTML = status_string + " percent: " + (Math.round(fraction*100)).toString() + "%";
+    parent_element.innerHTML = status_string + " " + (Math.round(fraction*100)).toString() + "%";
 
 }
 function updateStats() {
@@ -140,13 +139,11 @@ function postSession(increase_key) {
 }
 
 var reveal_alien = function(element1, element2, door_a, door_b) {
-    var alien_found = false;
     if (element1.className == 'alien'){
         element1.style.display = 'block';
         door_a.classList.add("door-open");
-        alien_found = true;
     }
-    if (element2.className == 'alien' && !alien_found){
+    else if (element2.className == 'alien'){
         element2.style.display = 'block';
         door_b.classList.add("door-open");
     }
@@ -179,12 +176,11 @@ var statusCheck = function(option, door_number) {
         }
         updateStats();
         updateGraph();
-        reset_button.style.display = "inline";
         end_game = true;
     }
 };
 
-reset_button.onclick = initializeGame;
+document.querySelector("#reset-button").onclick = initializeGame;
 
 door1.onclick = function() {
     if (!initial_click) {
@@ -230,7 +226,6 @@ function initializeGame() {
     updateGraph();
     updateStats();
     message.innerHTML = initial_message;
-    reset_button.style.display = "none";
    
     end_game = false;
     initial_click = true;
