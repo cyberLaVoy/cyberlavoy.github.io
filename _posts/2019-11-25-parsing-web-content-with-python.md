@@ -27,9 +27,8 @@ Let's first set things up with the necessary imports, and get the content we wan
 
 ```python
 import requests
-import re
 from bs4 import BeautifulSoup
-import json
+import re
 
 # replace this url with any valid website's url 
 url = "http://www.hplovecraft.com/writings/sources/hplcf.aspx"
@@ -76,6 +75,8 @@ for story in stories:
 ```
 
 Now you can enjoy all the cosmic horror H.P. Lovecraft has to offer!
+
+### Python Libraries Documentation
 
 [Beautiful Soup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
