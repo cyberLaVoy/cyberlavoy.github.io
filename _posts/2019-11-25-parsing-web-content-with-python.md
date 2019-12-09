@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Parsing Web Content With Python"
-date:   2019-11-25 00:00:00 -0000
+title:  "Parsing Web Content, with Python"
+date:   "2019-11-25 00:00:00"
 categories: python
 ---
 
@@ -10,16 +10,13 @@ Let's download the complete works of H.P. Lovecraft. We will accomplish this by 
 I'm assuming you have Python 3 installed, and have an understanding of the syntax. But perhaps you don't have a couple of the required libraries installed.
 
 ### Installing Required Libraries
+
+In a terminal, type the following commands to install the required libraries. Note that sudo privilege may be needed.
+
 ```console
 pip3 install requests
 pip3 install beautifulsoup4
 ```
-And if sudo is needed for either of these commands:
-```console
-sudo !!
-```
-Using ```!!``` is a nice way to copy the same command that was previously entered.
-
 
 ### Parsing the Web Content
 
