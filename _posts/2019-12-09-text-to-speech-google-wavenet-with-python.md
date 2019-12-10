@@ -17,7 +17,7 @@ Let's have a computer generated voice read this quote to us.
 
 The format of this web request came from watching the network activity on this [WaveNet](https://cloud.google.com/text-to-speech/#convert-your-text-to-speech-right-now) web page. I then copied the format of the POST request, made when using the tool under "Convert your text to speech right now". 
 
-The token is generated after CAPTCHA verification, and pressing "RESUME". You will need to copy the new generated token, found in the POST request, into the code below.
+The authentication token is generated after CAPTCHA verification, and pressing "RESUME". You will need to copy the new generated token, found in the POST request, into the code below.
 
 ```python
 import requests, base64, json
