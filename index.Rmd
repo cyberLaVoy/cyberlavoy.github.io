@@ -1,0 +1,43 @@
+---
+output: 
+    html_document:
+        theme: "darkly"
+---
+
+```{r setup, echo=FALSE} 
+library(htmltools)
+```
+
+# LaVoy {.tabset}
+
+## Links
+
+[Github](https://github.com/cyberLaVoy)
+
+[LinkedIn](https://linkedin.com/in/cyberLaVoy)
+
+[Goodreads](https://goodreads.com/cyberLaVoy)
+
+[Twitter](https://twitter.com/cyberLaVoy)
+
+
+## Blog Posts {.tabset}
+
+### Parsing Web Content
+```{r, echo=FALSE}
+htmltools::includeMarkdown("blog-posts/2019-11-25-parsing-web-content-with-python.md")
+```
+
+### Text-to-Speech
+```{r, echo=FALSE}
+htmltools::includeMarkdown("blog-posts/2019-12-09-text-to-speech-google-wavenet-with-python.md")
+```
+
+
+## Web Apps
+
+[Monty Hall](web-apps/monty-hall/index.html)
+
+[Controllable Red Square](web-apps/controllable-red-square/index.html)
+
+[Tasks](web-apps/tasks/index.html)
