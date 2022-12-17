@@ -1,4 +1,5 @@
 ---
+title: "LaVoy's Landing Page"
 output: 
     html_document:
         theme: "darkly"
@@ -8,7 +9,7 @@ output:
 library(htmltools)
 ```
 
-# LaVoy {.tabset}
+# {.tabset}
 
 ## Links
 
@@ -21,7 +22,7 @@ library(htmltools)
 [Twitter](https://twitter.com/cyberLaVoy)
 
 
-## Blog Posts {.tabset}
+## Blog Posts {.tabset .tabset-pills}
 
 ### Parsing Web Content
 ```{r, echo=FALSE}
