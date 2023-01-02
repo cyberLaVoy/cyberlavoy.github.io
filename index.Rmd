@@ -6,7 +6,6 @@ output:
 ---
 
 ```{r setup, echo=FALSE} 
-library(htmltools)
 library(leaflet)
 ```
 
@@ -16,6 +15,8 @@ library(leaflet)
 
 [Github](https://github.com/cyberLaVoy)
 
+[Instagram](https://www.instagram.com/cyberlavoy/)
+
 [LinkedIn](https://linkedin.com/in/cyberLaVoy)
 
 [Goodreads](https://goodreads.com/cyberLaVoy)
@@ -24,47 +25,54 @@ library(leaflet)
 
 [YouTube](https://www.youtube.com/@cyberLaVoy)
 
-[Instagram](https://www.instagram.com/cyberlavoy/)
+## About
 
-## Freeskate
+An introduction of self...
+
+### Freeskate
 
 Inline skating destinations I've explored.
 
 The number of destination markers will grow!
 
 ```{r, echo=FALSE}
-destinations <- data.frame(lat=c(33.89, 37.09),
-                           lng=c(-118.42, -113.56), 
-                           desc=c("Marvin Braude", "Virgin River"))
+destinations <- data.frame(lat = c(33.89, 37.09),
+                           lng = c(-118.42, -113.56),
+                           desc = c("Marvin Braude", "Virgin River"))
 
 m <- leaflet() %>%
     addTiles() %>%
-    addMarkers(lng = destinations$lng, lat = destinations$lat, popup = destinations$desc)
+    addMarkers(lng = destinations$lng,
+               lat = destinations$lat,
+               popup = destinations$desc)
 
 m
 ```
 
-## Blog Posts {.tabset .tabset-pills}
+## Donate
 
-Not really blog posts. More like random tutorials.
+In no particular order...
 
-### Parsing Web Content
-```{r, echo=FALSE}
-htmltools::includeMarkdown("blog-posts/2019-11-25-parsing-web-content-with-python.md")
-```
+### BTC
 
-### Text-to-Speech
-```{r, echo=FALSE}
-htmltools::includeMarkdown("blog-posts/2019-12-09-text-to-speech-google-wavenet-with-python.md")
-```
+bc1qcwranlzqxwjfrvqqn3al8vysn8ld6y37rsrnyd
 
+### ETH
 
-## Web Apps
+0x95Ecef0D6a3bb426fFc1f77D11868e52a3e9aAB2
 
-Kind of broken enigmas.
+### KAS
 
-[Monty Hall](web-apps/monty-hall/index.html)
+kaspa:qp62uzqawhzhutvttzxywxm8fftv6590s42mjwmjn49g6z2l2swr2q0jdxj6x
 
-[Controllable Red Square](web-apps/controllable-red-square/index.html)
+### IOTX
 
-[Tasks](web-apps/tasks/index.html)
+io14rvz6pdqckm58d7zrf3d49pvah0swv7q7z863u
+
+### DOGE
+
+D9AVH7ia3hgYwZxUKFHWeh1hENBvEDj8WS
+
+### LTC
+
+ltc1q7adhexch7p9xna8a2qdsmnlx9t8uft2wztaxrf

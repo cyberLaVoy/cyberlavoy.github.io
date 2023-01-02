@@ -4417,141 +4417,50 @@ display: none;
 <div id="socials" class="section level2">
 <h2>Socials</h2>
 <p><a href="https://github.com/cyberLaVoy">Github</a></p>
+<p><a href="https://www.instagram.com/cyberlavoy/">Instagram</a></p>
 <p><a href="https://linkedin.com/in/cyberLaVoy">LinkedIn</a></p>
 <p><a href="https://goodreads.com/cyberLaVoy">Goodreads</a></p>
 <p><a href="https://twitter.com/cyberLaVoy">Twitter</a></p>
 <p><a href="https://www.youtube.com/@cyberLaVoy">YouTube</a></p>
-<p><a href="https://www.instagram.com/cyberlavoy/">Instagram</a></p>
 </div>
-<div id="freeskate" class="section level2">
-<h2>Freeskate</h2>
+<div id="about" class="section level2">
+<h2>About</h2>
+<p>An introduction of self…</p>
+<div id="freeskate" class="section level3">
+<h3>Freeskate</h3>
 <p>Inline skating destinations I’ve explored.</p>
 <p>The number of destination markers will grow!</p>
-<div id="htmlwidget-7ea80cd19d7535807d45" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7ea80cd19d7535807d45">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[33.89,37.09],[-118.42,-113.56],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Marvin Braude","Virgin River"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[33.89,37.09],"lng":[-118.42,-113.56]}},"evals":[],"jsHooks":[]}</script>
-</div>
-<div id="blog-posts" class="section level2 tabset tabset-pills">
-<h2 class="tabset tabset-pills">Blog Posts</h2>
-<p>Not really blog posts. More like random tutorials.</p>
-<div id="parsing-web-content" class="section level3">
-<h3>Parsing Web Content</h3>
-<p>Let’s download the complete works of H.P. Lovecraft. We will accomplish this by parsing webpages that have the stories as text on them.</p>
-<p>I’m assuming you have Python 3 installed, and have an understanding of the syntax. But perhaps you don’t have a couple of the required libraries installed.</p>
-<h3>Installing Required Libraries</h3>
-<p>In a terminal, type the following commands to install the required libraries. Note that sudo privilege may be needed.</p>
-<pre><code class="language-console">pip3 install requests
-pip3 install beautifulsoup4
-</code></pre>
-<h3>Parsing the Web Content</h3>
-<p>Let’s first set things up with the necessary imports, and get the content we want to parse. I also recommend following the URL in the code snippet to understand what we are parsing. <em>Note that you will want to make a new directory to run this code in. It will fill up what ever directory you run it in, with the stories we are about the parse.</em></p>
-<pre><code class="language-python">import requests
-from bs4 import BeautifulSoup
-import re
-
-# replace this url with any valid website&#39;s url 
-url = &quot;http://www.hplovecraft.com/writings/sources/hplcf.aspx&quot;
-# retrieve all of the html content on the web page
-source = requests.get(url)
-# create a Beutiful Soup object to assist in parsing
-soup = BeautifulSoup(source.text, &quot;html.parser&quot;)
-</code></pre>
-<p>This is where things get messy. After using a suitable browser’s developer tools to inspect the pages of interest, I was able to come up with a solution to parsing the pages.</p>
-<pre><code class="language-python"># this turned out to be the base url for each story
-storiesBaseURL = &quot;http://www.hplovecraft.com/writings/texts/fiction/&quot;
-# find all anchor links using a regular expression to match on the href attribute
-anchors = soup.find_all(&quot;a&quot;, href=re.compile(&quot;../fiction/*&quot;))
-stories = []
-# gather a list of the stories
-for anchor in anchors:
-    # use get_text() to exclude all html tags from the object, and just get the text
-    title = anchor.get_text()
-    # grab the href attribute on the anchor link
-    href = anchor[&quot;href&quot;]
-    # we only want the file name at the end of the href attribute
-    filename = href.split(&quot;/&quot;)[-1]
-    fullURL = storiesBaseURL + filename 
-    # append each story title and URL, in a tuple, to the stories list
-    stories.append( (title, fullURL) )
-</code></pre>
-<p>Now that we have the URLs to each story, we can parse over each one of these pages, and get the content of each story. This is done in a similar fashion to how we parsed the main page before.</p>
-<pre><code class="language-python">for story in stories:
-    title, url = story[0], story[1]
-    source = requests.get(url)
-    soup = BeautifulSoup(source.text, &quot;html.parser&quot;)
-    # find all div tags where the html attribute align equals &quot;justify&quot;
-    divs = soup.find_all(&quot;div&quot;, align=&quot;justify&quot;)
-    # save all content to a file with the title as the filename
-    with open(title + &quot;.txt&quot;, &#39;w&#39;) as fout:
-        fout.write(&quot;H.P. Lovecrafts&#39;s &quot; + title)
-        fout.write(divs[0].get_text())
-</code></pre>
-<p>Now you can enjoy all the cosmic horror H.P. Lovecraft has to offer!</p>
-<h3>Python Libraries Documentation</h3>
-<p><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">Beautiful Soup Documentation</a></p>
-<p><a href="https://requests.readthedocs.io/en/master/">Requests Documentation</a></p>
-
-</div>
-<div id="text-to-speech" class="section level3">
-<h3>Text-to-Speech</h3>
-<p>In the 1999 film, The Matrix, Morpheus says to Neo, as an option to reveal the Matrix to him, the following:</p>
-<blockquote>
-<p>“This is your last chance. After this there is no turning back.
-You take the blue pill, the story ends; you wake up in your bed and believe whatever you want to believe.
-You take the red pill, you stay in Wonderland and I show you how deep the rabbit hole goes.”</p>
-</blockquote>
-<p>Let’s have a computer generated voice read this quote to us.</p>
-<h1>WaveNet Web Request</h1>
-<p>The format of this web request came from watching the network activity on this <a href="https://cloud.google.com/text-to-speech/#convert-your-text-to-speech-right-now">WaveNet</a> web page. I then copied the format of the POST request, made when using the tool under “Convert your text to speech right now”.</p>
-<p>The authentication token is generated after CAPTCHA verification, and pressing “RESUME”. You will need to copy the new generated token, found in the POST request, into the code below.</p>
-<pre><code class="language-python">import requests, base64, json
-import urllib.parse
-
-params = {
-    &quot;url&quot; : &quot;https://texttospeech.googleapis.com/v1beta1/text:synthesize&quot;,
-    &quot;token&quot; : &quot;&quot; # replace with newly generated token
-}
-
-queryString = urllib.parse.urlencode(params)
-url = &quot;https://cxl-services.appspot.com/proxy&quot; + &#39;?&#39; + queryString 
-</code></pre>
-<p>The body of request contains the customizable parameters, as well as the actual text to use for audio generation. I’ve raised the pitch to my liking, in this example.</p>
-<pre><code class="language-python"># change this text to any suitable string
-text = &quot;This is your last chance. After this there is no turning back. You take the blue pill, the story ends; you wake up in your bed and believe whatever you want to believe. You take the red pill, you stay in Wonderland and I show you how deep the rabbit hole goes.&quot;
-
-body = {
-  &quot;audioConfig&quot;: {
-    &quot;audioEncoding&quot;: &quot;LINEAR16&quot;,
-    &quot;pitch&quot;: 2, # change the pitch, default 1
-    &quot;speakingRate&quot;: 1 # change the speed of speaking, default 1
-  },
-  &quot;input&quot;: {
-    &quot;text&quot;: text
-  },
-  &quot;voice&quot;: {
-    &quot;languageCode&quot;: &quot;en-US&quot;,
-    &quot;name&quot;: &quot;en-US-Wavenet-E&quot;
-  }
-}
-</code></pre>
-<p>Now it’s time to send a POST request, and get the audio in response. Here I am writing the audio to a file, to play anytime.</p>
-<pre><code class="language-python">response = requests.post(url, json=body)
-data = json.loads(response.text)
-audio = data[&quot;audioContent&quot;]
-
-with open(&quot;voice.wav&quot;, &quot;wb&quot;) as fout:
-    # decode and write the audio data to a file
-    fout.write( base64.b64decode(audio) ) 
-</code></pre>
-
+<div id="htmlwidget-616dc639b7ca6dbccf3c" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-616dc639b7ca6dbccf3c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[33.89,37.09],[-118.42,-113.56],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Marvin Braude","Virgin River"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[33.89,37.09],"lng":[-118.42,-113.56]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<div id="web-apps" class="section level2">
-<h2>Web Apps</h2>
-<p>Kind of broken enigmas.</p>
-<p><a href="web-apps/monty-hall/index.html">Monty Hall</a></p>
-<p><a href="web-apps/controllable-red-square/index.html">Controllable
-Red Square</a></p>
-<p><a href="web-apps/tasks/index.html">Tasks</a></p>
+<div id="donate" class="section level2">
+<h2>Donate</h2>
+<p>In no particular order…</p>
+<div id="btc" class="section level3">
+<h3>BTC</h3>
+<p>bc1qcwranlzqxwjfrvqqn3al8vysn8ld6y37rsrnyd</p>
+</div>
+<div id="eth" class="section level3">
+<h3>ETH</h3>
+<p>0x95Ecef0D6a3bb426fFc1f77D11868e52a3e9aAB2</p>
+</div>
+<div id="kas" class="section level3">
+<h3>KAS</h3>
+<p>kaspa:qp62uzqawhzhutvttzxywxm8fftv6590s42mjwmjn49g6z2l2swr2q0jdxj6x</p>
+</div>
+<div id="iotx" class="section level3">
+<h3>IOTX</h3>
+<p>io14rvz6pdqckm58d7zrf3d49pvah0swv7q7z863u</p>
+</div>
+<div id="doge" class="section level3">
+<h3>DOGE</h3>
+<p>D9AVH7ia3hgYwZxUKFHWeh1hENBvEDj8WS</p>
+</div>
+<div id="ltc" class="section level3">
+<h3>LTC</h3>
+<p>ltc1q7adhexch7p9xna8a2qdsmnlx9t8uft2wztaxrf</p>
+</div>
 </div>
 </div>
 
