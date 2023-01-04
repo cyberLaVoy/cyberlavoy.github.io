@@ -45,22 +45,22 @@ freeskate_destinations <- data.frame(lat = c(33.89, 37.09),
 jiu_jitsu_training_grounds <- data.frame(lat = c(47.67, 37.12),
                                          lng = c(-122.28, -113.53),
                                          desc = c("Mat Chess", "Ace"))
-
-m <- leaflet() %>%
+groups <- c("Freeskate Destinations", "Jiu-Jitsu Training Grounds")
+m <- leaflet(width = "100%") %>%
     addTiles() %>%
     addCircleMarkers(lng = freeskate_destinations$lng,
                lat = freeskate_destinations$lat,
                popup = freeskate_destinations$desc,
-               group="Freeskate Destinations",
-               color="#00f",
-               fillColor="#00f") %>%
+               group = groups[1],
+               color = "#00f",
+               fillColor = "#00f") %>%
     addCircleMarkers(lng = jiu_jitsu_training_grounds$lng,
                lat = jiu_jitsu_training_grounds$lat,
                popup = jiu_jitsu_training_grounds$desc,
-               group="Jiu-Jitsu Training Grounds",
-               color="#f00",
-               fillColor="#f00") %>%
-    addLayersControl(overlayGroups = c("Freeskate Destinations", "Jiu-Jitsu Training Grounds"),
+               group = groups[2],
+               color = "#f00",
+               fillColor = "#f00") %>%
+    addLayersControl(overlayGroups = groups,
                      options = layersControlOptions(collapsed = FALSE))
 
 m
