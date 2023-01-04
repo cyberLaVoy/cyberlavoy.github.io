@@ -27,24 +27,41 @@ library(leaflet)
 
 ## About
 
-An introduction of self...
+Hi! I'm LaVoy. 
 
-### Freeskate
+This section is meant to be filled in with an introduction of who I am... eventually. 
 
-Inline skating destinations I've explored.
+### Places
 
-The number of destination markers will grow!
+Some places I've been, doing things I love.
+
+I hope to see the number and spread of location markers grow with time.
 
 ```{r, echo=FALSE}
-destinations <- data.frame(lat = c(33.89, 37.09),
-                           lng = c(-118.42, -113.56),
-                           desc = c("Marvin Braude", "Virgin River"))
+freeskate_destinations <- data.frame(lat = c(33.89, 37.09),
+                                     lng = c(-118.42, -113.56),
+                                     desc = c("Marvin Braude", "Virgin River"))
+
+jiu_jitsu_training_grounds <- data.frame(lat = c(47.67, 37.12),
+                                         lng = c(-122.28, -113.53),
+                                         desc = c("Mat Chess", "Ace"))
 
 m <- leaflet() %>%
     addTiles() %>%
-    addMarkers(lng = destinations$lng,
-               lat = destinations$lat,
-               popup = destinations$desc)
+    addCircleMarkers(lng = freeskate_destinations$lng,
+               lat = freeskate_destinations$lat,
+               popup = freeskate_destinations$desc,
+               group="Freeskate Destinations",
+               color="#00f",
+               fillColor="#00f") %>%
+    addCircleMarkers(lng = jiu_jitsu_training_grounds$lng,
+               lat = jiu_jitsu_training_grounds$lat,
+               popup = jiu_jitsu_training_grounds$desc,
+               group="Jiu-Jitsu Training Grounds",
+               color="#f00",
+               fillColor="#f00") %>%
+    addLayersControl(overlayGroups = c("Freeskate Destinations", "Jiu-Jitsu Training Grounds"),
+                     options = layersControlOptions(collapsed = FALSE))
 
 m
 ```
