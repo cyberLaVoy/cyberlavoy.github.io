@@ -76,6 +76,10 @@ bc1qcwranlzqxwjfrvqqn3al8vysn8ld6y37rsrnyd
 
 0x95Ecef0D6a3bb426fFc1f77D11868e52a3e9aAB2
 
+### XMR
+
+4ApQ6VFePy3XG8YGayYWSGSdhBwWM3dkhLHFihzVoAi6QcgkkgU9J3QFfueeP4fEE4giAFuRNjdsj7pJmhvRudrXQyVb2Ta
+
 ### KAS
 
 kaspa:qp62uzqawhzhutvttzxywxm8fftv6590s42mjwmjn49g6z2l2swr2q0jdxj6x
