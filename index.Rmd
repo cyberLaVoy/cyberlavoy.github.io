@@ -15,15 +15,17 @@ library(leaflet)
 
 [Github](https://github.com/cyberLaVoy)
 
-[Instagram](https://www.instagram.com/cyberlavoy/)
-
 [LinkedIn](https://linkedin.com/in/cyberLaVoy)
 
-[Goodreads](https://goodreads.com/cyberLaVoy)
+[Instagram](https://www.instagram.com/cyberlavoy/)
 
 [Twitter](https://twitter.com/cyberLaVoy)
 
 [YouTube](https://www.youtube.com/@cyberLaVoy)
+
+[Goodreads](https://goodreads.com/cyberLaVoy)
+
+[Letterboxd](https://letterboxd.com/cyberlavoy/)
 
 ## About
 
