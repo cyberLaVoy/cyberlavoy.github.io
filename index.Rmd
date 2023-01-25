@@ -23,6 +23,8 @@ library(leaflet)
 
 [YouTube](https://www.youtube.com/@cyberLaVoy)
 
+[Twitch](https://www.twitch.tv/cyberlavoy)
+
 [Goodreads](https://goodreads.com/cyberLaVoy)
 
 [Letterboxd](https://letterboxd.com/cyberlavoy/)
