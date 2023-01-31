@@ -17,13 +17,13 @@ library(leaflet)
 
 [LinkedIn](https://linkedin.com/in/cyberLaVoy)
 
-[Instagram](https://www.instagram.com/cyberlavoy/)
-
-[Twitter](https://twitter.com/cyberLaVoy)
-
 [YouTube](https://www.youtube.com/@cyberLaVoy)
 
+[Instagram](https://www.instagram.com/cyberlavoy/)
+
 [Twitch](https://www.twitch.tv/cyberlavoy)
+
+[Twitter](https://twitter.com/cyberLaVoy)
 
 [Goodreads](https://goodreads.com/cyberLaVoy)
 
