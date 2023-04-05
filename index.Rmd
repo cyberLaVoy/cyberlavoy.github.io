@@ -29,6 +29,8 @@ library(leaflet)
 
 [Letterboxd](https://letterboxd.com/cyberlavoy/)
 
+[Khan Academy](https://www.khanacademy.org/profile/cyberlavoy)
+
 ## About
 
 Hi! I'm LaVoy. 
